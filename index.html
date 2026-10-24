@@ -1,0 +1,153 @@
+---
+layout: default
+title: Beranda
+permalink: /
+description: Pratinjau situs Rumah Sakit Pratama Nikiwar di Kampung Werianggi, Distrik Nikiwar, Kabupaten Teluk Wondama, Papua Barat.
+---
+{% assign hospital = site.data.hospital %}
+<main id="isi">
+  <section id="banner" aria-labelledby="judul-utama">
+    <div class="inner">
+      <div class="hero-copy">
+        <p class="hero-region">{{ hospital.region | escape }}</p>
+        <header><h1 id="judul-utama">{{ hospital.name | escape }}</h1></header>
+        <p>{{ hospital.intro | escape }}</p>
+        <p><strong>{{ hospital.address | escape }}</strong></p>
+        <div class="hero-actions">
+          <a class="button primary" href="#tentang">Lihat informasi rumah sakit</a>
+          <a class="button" href="#cta">Informasi kontak</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="{{ '/assets/rumah-sakit-pratama-nikiwar.jpg' | relative_url }}" alt="Bagian depan Rumah Sakit Pratama Nikiwar." width="1440" height="1080" fetchpriority="high" decoding="async">
+        <figcaption>Foto Rumah Sakit Pratama Nikiwar yang diberikan untuk situs ini.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="notice" role="note">
+    <p><strong>Periksa sebelum dibagikan.</strong> Informasi di situs ini masih dalam tahap peninjauan. Daftar layanan dan artikel yang diberi label contoh bukan keterangan resmi rumah sakit.</p>
+  </div>
+
+  <article id="main">
+    <header class="special container" id="tentang" aria-labelledby="judul-tentang">
+      <p class="eyebrow">Tentang rumah sakit</p>
+      <h2 id="judul-tentang">Informasi Rumah Sakit</h2>
+      <p>{{ hospital.intro | escape }}</p>
+    </header>
+
+    <section class="wrapper style1" aria-label="Lokasi dan jam buka">
+      <div class="info-grid">
+        <article class="info-card">
+          <span class="info-icon icon solid fa-map-marker-alt" aria-hidden="true"></span>
+          <h3>Lokasi</h3>
+          <address>{{ hospital.address | escape }}<br>{{ hospital.address_note | escape }}</address>
+        </article>
+        <article class="info-card">
+          <span class="info-icon icon solid fa-clock" aria-hidden="true"></span>
+          <h3>Jam buka</h3>
+          <p><strong>{{ hospital.opening_hours | escape }}</strong></p>
+          <p>{{ hospital.hours_note | escape }}</p>
+        </article>
+        <article class="info-card">
+          <span class="info-icon icon solid fa-info-circle" aria-hidden="true"></span>
+          <h3>Informasi rumah sakit</h3>
+          <p>Rincian operasional lain akan ditambahkan setelah diperiksa dan disetujui pihak rumah sakit.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrapper style2 special-alt" id="layanan" aria-labelledby="judul-layanan">
+      <div class="section-heading">
+        <p class="eyebrow">Informasi pelayanan</p>
+        <h2 id="judul-layanan">Layanan</h2>
+        <p class="section-lead">Contoh awal berikut belum memastikan bahwa layanan atau petugas tersedia. Periksa ketersediaan dan jadwal kepada pihak rumah sakit sebelum dipublikasikan.</p>
+      </div>
+      <div class="service-grid">
+        {% for service in hospital.services %}
+        <article class="service-card">
+          <span class="review-label">Ilustrasi — perlu konfirmasi</span>
+          <h3>{{ service.title | escape }}</h3>
+          <p>{{ service.note | escape }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="patient-section" id="pasien" aria-labelledby="judul-pasien">
+      <div class="patient-inner">
+        <p class="eyebrow">Untuk pasien dan keluarga</p>
+        <h2 id="judul-pasien">Informasi bagi pasien</h2>
+        <p>{{ hospital.patient_information | escape }}</p>
+      </div>
+    </section>
+
+    {% assign recent_posts = site.posts | sort: "date" | reverse %}
+    <section class="articles-section" id="artikel" aria-labelledby="judul-artikel">
+      <div class="section-heading">
+        <p class="eyebrow">Kabar dan artikel</p>
+        <h2 id="judul-artikel">Artikel</h2>
+        <p>Artikel contoh membantu menyiapkan tampilan situs. Ganti dengan berita yang sudah diperiksa dan disetujui sebelum publikasi.</p>
+      </div>
+      <div class="article-list">
+        {% for post in recent_posts limit:3 %}
+        <article class="news-card">
+          {% if post.example %}<span class="review-label">Contoh — bukan berita resmi</span>{% endif %}
+          <time class="news-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+          <p class="news-summary">{{ post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 220 | escape }}</p>
+          <a href="{{ post.url | relative_url }}">{% if post.example %}Baca artikel contoh{% else %}Baca artikel{% endif %}<span class="icon solid fa-arrow-right" aria-hidden="true"></span></a>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="article-archive-link"><a class="button" href="{{ '/artikel/' | relative_url }}">Lihat semua artikel</a></p>
+    </section>
+
+    <section id="cta" aria-labelledby="judul-kontak">
+      <header>
+        <p class="eyebrow">Informasi penting</p>
+        <h2 id="judul-kontak">Kontak dan kondisi mendesak</h2>
+        <p>{{ hospital.urgent_information | escape }}</p>
+      </header>
+      <div class="contact-grid">
+        <article class="contact-card">
+          <h3>Hubungi rumah sakit</h3>
+          <dl class="contact-list">
+            <div><dt>Telepon</dt><dd>{% assign phone = hospital.phone | strip %}{% if phone != "" %}<a href="tel:{{ phone | replace: ' ', '' | escape }}">{{ phone | escape }}</a>{% else %}Belum dikonfirmasi.{% endif %}</dd></div>
+            <div><dt>Surel</dt><dd>{% assign email = hospital.email | strip %}{% if email != "" %}<a href="mailto:{{ email | escape }}">{{ email | escape }}</a>{% else %}Belum dikonfirmasi.{% endif %}</dd></div>
+          </dl>
+        </article>
+        <article class="contact-card">
+          <h3>Informasi kondisi mendesak</h3>
+          <p>Kontak dan arahan resmi untuk kondisi mendesak belum dicantumkan. Silakan lengkapi bagian ini setelah pihak rumah sakit memberikan informasi yang disetujui.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pbs-section" id="papua-barat-sehat" aria-labelledby="judul-pbs">
+      <div class="section-heading">
+        <p class="eyebrow">Informasi program</p>
+        <h2 id="judul-pbs">Papua Barat Sehat</h2>
+      </div>
+      <div class="pbs-layout">
+        <div class="pbs-summary">
+          <p class="section-lead">{{ hospital.pbs.introduction | escape }}</p>
+          <div class="pbs-review-note" role="note">
+            <strong>Draf materi — perlu peninjauan sebelum publikasi</strong>
+            <p>{{ hospital.pbs.review_note | escape }}</p>
+          </div>
+          <div class="pbs-actions">
+            <a class="button primary" href="{{ hospital.pbs.article_path | relative_url }}">Baca draf informasi Papua Barat Sehat</a>
+            <a href="https://dinkes.papuabaratprov.go.id/" rel="noopener noreferrer">Website Dinas Kesehatan Provinsi Papua Barat</a>
+          </div>
+        </div>
+        <figure class="pbs-flyer">
+          <a href="{{ hospital.pbs.flyer_path | relative_url }}" aria-label="Buka flyer Papua Barat Sehat dalam ukuran penuh">
+            <img src="{{ hospital.pbs.flyer_path | relative_url }}" alt="{{ hospital.pbs.flyer_alt | escape }}" width="1536" height="1024" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Flyer yang diberikan untuk ditinjau. Cocokkan isi dengan sumber resmi sebelum dibagikan sebagai informasi program.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </article>
+</main>

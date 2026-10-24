@@ -1,0 +1,17 @@
+title: "Rumah Sakit Pratama Nikiwar"
+description: "Pratinjau situs Rumah Sakit Pratama Nikiwar di Kampung Werianggi, Distrik Nikiwar, Kabupaten Teluk Wondama, Papua Barat."
+lang: id
+timezone: Asia/Jayapura
+baseurl: ""
+url: ""
+preview: true
+preview_notice: "Layanan, kontak, dan materi program masih berupa draf. Pastikan semua informasi diperiksa dan disetujui sebelum dibagikan."
+permalink: /artikel/:year/:month/:day/:title/
+excerpt_separator: "<!--more-->"
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

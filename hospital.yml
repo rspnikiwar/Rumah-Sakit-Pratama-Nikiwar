@@ -1,0 +1,25 @@
+# Isi nilai di file ini setelah dikonfirmasi oleh pihak rumah sakit.
+# Terjemahan bahasa lokal hanya boleh ditambahkan setelah ditinjau bersama penutur dan komunitas terkait.
+name: "Rumah Sakit Pratama Nikiwar"
+region: "Papua Barat, Indonesia"
+intro: "Selamat datang di halaman Rumah Sakit Pratama Nikiwar. Informasi situs ini disiapkan agar masyarakat dapat mengenal rumah sakit dan membaca kabar yang telah disetujui."
+address: "Kampung Werianggi, Distrik Nikiwar, Kabupaten Teluk Wondama, Provinsi Papua Barat 98361"
+address_note: "Jalur ruas Jalan Trans Papua Barat"
+opening_hours: "24 jam"
+hours_note: "Sesuai keterangan yang diberikan untuk pratinjau ini; mohon sahkan sebelum publikasi."
+patient_information: "Informasi kunjungan, dokumen yang perlu dibawa, dan prosedur pendaftaran akan ditambahkan setelah diperiksa dan disetujui pihak rumah sakit."
+phone: ""
+email: ""
+urgent_information: "Nomor kontak dan arahan resmi untuk kondisi mendesak belum diisi. Halaman pratinjau ini tidak menggantikan layanan darurat setempat."
+footer_note: "Kontak dan rincian operasional akan ditambahkan setelah dikonfirmasi."
+services:
+  - title: "Pelayanan umum"
+    note: "Ilustrasi, belum dikonfirmasi. Ketersediaan petugas, jadwal, dan cakupan perlu diperiksa."
+  - title: "USG"
+    note: "Ilustrasi, belum dikonfirmasi. Ketersediaan petugas dan jadwal perlu diperiksa."
+pbs:
+  introduction: "Bagian ini disiapkan untuk memuat informasi Program Papua Barat Sehat dan bahan yang diberikan untuk ditinjau."
+  review_note: "Persyaratan, jenis layanan, pembiayaan, tanggal berlaku, kontak program, dan status RSPN sebagai fasilitas pelaksana perlu dicocokkan dengan sumber resmi sebelum publikasi."
+  article_path: "/artikel-papua-barat-sehat.html"
+  flyer_path: "/assets/papua-barat-sehat-flyer.jpg"
+  flyer_alt: "Flyer Papua Barat Sehat — materi untuk ditinjau."

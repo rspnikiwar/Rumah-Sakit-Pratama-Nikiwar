@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'id' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17483d">
+  {% if site.preview %}<meta name="robots" content="noindex, nofollow">{% endif %}
+  {% assign seo_description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 %}
+  {% if page.title == "Beranda" %}
+    {% assign seo_title = site.title | append: " | Pratinjau" %}
+  {% else %}
+    {% assign seo_title = page.title | default: site.title | append: " | " | append: site.title %}
+  {% endif %}
+  <meta name="description" content="{{ seo_description | escape }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="{{ seo_title | escape }}">
+  <meta property="og:description" content="{{ seo_description | escape }}">
+  {% if site.url != "" %}<meta property="og:image" content="{{ '/assets/rspn-logo.jpg' | absolute_url }}">{% endif %}
+  <meta name="twitter:card" content="summary">
+  <title>{{ seo_title | escape }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/rspn-overrides.css' | relative_url }}">
+</head>
+<body class="{% if page.url == '/' %}index{% else %}no-sidebar{% endif %}">
+  <a class="skip-link" href="#isi">Langsung ke isi halaman</a>
+  {% assign hospital = site.data.hospital %}
+  {% if site.preview %}
+  <aside class="preview-banner" role="note" aria-label="Pemberitahuan pratinjau">
+    <strong>PRATINJAU — INFORMASI PERLU DIPERIKSA</strong>
+    <span>{{ site.preview_notice | escape }}</span>
+  </aside>
+  {% endif %}
+  <div id="page-wrapper">
+    <header id="header">
+      <div class="header-inner">
+        <a id="logo" class="brand" href="{{ '/' | relative_url }}#banner" aria-label="{{ hospital.name | escape }}, halaman utama">
+          <img class="brand-emblem" src="{{ '/assets/lambang-teluk-wondama.png' | relative_url }}" alt="Lambang Kabupaten Teluk Wondama" width="800" height="992" decoding="async">
+          <img class="brand-logo" src="{{ '/assets/rspn-logo.jpg' | relative_url }}" alt="Logo {{ hospital.name | escape }}" width="1774" height="887" fetchpriority="high" decoding="async">
+        </a>
+        <div class="header-navigation">
+          <nav id="nav" aria-label="Navigasi utama">
+            <ul>
+              <li><a href="{{ '/' | relative_url }}#tentang">Tentang</a></li>
+              <li><a href="{{ '/' | relative_url }}#layanan">Layanan</a></li>
+              <li><a href="{{ '/' | relative_url }}#pasien">Info pasien</a></li>
+              <li><a href="{{ '/' | relative_url }}#artikel">Artikel</a></li>
+              <li><a href="{{ '/' | relative_url }}#cta">Kontak</a></li>
+            </ul>
+          </nav>
+          <a class="button primary pbs-header-button" href="{{ '/' | relative_url }}#papua-barat-sehat">Papua Barat Sehat</a>
+        </div>
+      </div>
+    </header>
+    {{ content }}
+    <footer id="footer">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-name">{{ hospital.name | escape }}</p>
+          <p class="footer-meta">{{ hospital.region | escape }}</p>
+          <p class="footer-meta">{{ hospital.address | escape }}</p>
+          <p class="footer-meta">Jam buka: {{ hospital.opening_hours | escape }}</p>
+          <p class="footer-meta">{{ hospital.footer_note | escape }}</p>
+          <p class="footer-credit">Tata letak diadaptasi dari <a href="https://html5up.net/twenty" rel="license noopener noreferrer">Twenty oleh HTML5 UP</a>, berlisensi <a href="https://html5up.net/license" rel="license noopener noreferrer">Creative Commons Attribution 3.0</a>. Ikon lokal: Font Awesome Free 5.15.4. Rincian template dan lisensi ada di <a href="{{ '/third-party-notices/' | relative_url }}">catatan atribusi</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
